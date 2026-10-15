@@ -200,7 +200,7 @@ export const EventControls: React.FC<EventControlsProps> = ({
                 fontSize: '0.8rem',
                 borderRadius: '6px',
                 border: '1px solid var(--border-subtle)',
-                background: 'rgba(15, 23, 42, 0.9)',
+                background: 'var(--bg-input)',
                 color: 'var(--text-main)',
                 outline: 'none',
               }}
@@ -228,7 +228,7 @@ export const EventControls: React.FC<EventControlsProps> = ({
                   fontSize: '0.8rem',
                   borderRadius: '6px',
                   border: '1px solid var(--border-subtle)',
-                  background: 'rgba(15, 23, 42, 0.9)',
+                  background: 'var(--bg-input)',
                   color: 'var(--text-main)',
                   outline: 'none',
                 }}
@@ -251,7 +251,7 @@ export const EventControls: React.FC<EventControlsProps> = ({
                   fontSize: '0.8rem',
                   borderRadius: '6px',
                   border: '1px solid var(--border-subtle)',
-                  background: 'rgba(15, 23, 42, 0.9)',
+                  background: 'var(--bg-input)',
                   color: 'var(--text-main)',
                   outline: 'none',
                 }}
@@ -274,7 +274,7 @@ export const EventControls: React.FC<EventControlsProps> = ({
                   fontSize: '0.8rem',
                   borderRadius: '6px',
                   border: '1px solid var(--border-subtle)',
-                  background: 'rgba(15, 23, 42, 0.9)',
+                  background: 'var(--bg-input)',
                   color: 'var(--text-main)',
                   outline: 'none',
                 }}
@@ -299,7 +299,7 @@ export const EventControls: React.FC<EventControlsProps> = ({
                   fontSize: '0.8rem',
                   borderRadius: '6px',
                   border: '1px solid var(--border-subtle)',
-                  background: 'rgba(15, 23, 42, 0.9)',
+                  background: 'var(--bg-input)',
                   color: 'var(--text-main)',
                   outline: 'none',
                 }}
@@ -323,7 +323,7 @@ export const EventControls: React.FC<EventControlsProps> = ({
                 fontSize: '0.8rem',
                 borderRadius: '6px',
                 border: '1px solid var(--border-subtle)',
-                background: 'rgba(15, 23, 42, 0.9)',
+                background: 'var(--bg-input)',
                 color: 'var(--text-main)',
                 outline: 'none',
               }}
@@ -348,7 +348,7 @@ export const EventControls: React.FC<EventControlsProps> = ({
                   fontSize: '0.8rem',
                   borderRadius: '6px',
                   border: '1px solid var(--border-subtle)',
-                  background: 'rgba(15, 23, 42, 0.9)',
+                  background: 'var(--bg-input)',
                   color: 'var(--text-main)',
                   outline: 'none',
                 }}
@@ -368,7 +368,7 @@ export const EventControls: React.FC<EventControlsProps> = ({
                   fontSize: '0.8rem',
                   borderRadius: '6px',
                   border: '1px solid var(--border-subtle)',
-                  background: 'rgba(15, 23, 42, 0.9)',
+                  background: 'var(--bg-input)',
                   color: 'var(--text-main)',
                   outline: 'none',
                 }}
@@ -399,7 +399,7 @@ export const EventControls: React.FC<EventControlsProps> = ({
           style={{
             padding: '1.25rem',
             border: '1px solid rgba(244, 63, 94, 0.4)',
-            background: 'linear-gradient(135deg, rgba(244, 63, 94, 0.08) 0%, rgba(15, 23, 42, 0.7) 100%)',
+            background: 'linear-gradient(135deg, rgba(244, 63, 94, 0.08) 0%, var(--bg-card) 100%)',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
@@ -412,7 +412,7 @@ export const EventControls: React.FC<EventControlsProps> = ({
             Stress tests system resiliency by executing a multi-point cascading catastrophe at the current simulation minute:
           </p>
 
-          <ul style={{ fontSize: '0.75rem', color: '#f8fafc', paddingLeft: '1.25rem', marginBottom: '1rem', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+          <ul style={{ fontSize: '0.75rem', color: 'var(--text-main)', paddingLeft: '1.25rem', marginBottom: '1rem', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
             <li><strong>Bridge N2 Cut Off:</strong> LowBridge route severed; boats must reroute via EastColony/ClinicQuarter.</li>
             <li><strong>BOAT03 Mechanical Breakdown:</strong> High-capacity 10-person vessel stalled with invalidation of active contracts.</li>
             <li><strong>SH02 Shelter Overflow:</strong> CommunityHall fully exhausted, forcing evacuees to redirect to remaining shelters.</li>
@@ -452,7 +452,7 @@ export const EventControls: React.FC<EventControlsProps> = ({
                   style={{
                     padding: '0.45rem 0.65rem',
                     borderRadius: '6px',
-                    background: 'rgba(15, 23, 42, 0.6)',
+                    background: 'var(--bg-card)',
                     border: '1px solid var(--border-subtle)',
                     fontSize: '0.75rem',
                     display: 'flex',

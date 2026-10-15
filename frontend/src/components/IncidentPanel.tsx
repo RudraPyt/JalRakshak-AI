@@ -78,7 +78,7 @@ export const IncidentPanel: React.FC<IncidentPanelProps> = ({
                 fontSize: '0.775rem',
                 borderRadius: '6px',
                 border: '1px solid var(--border-subtle)',
-                background: 'rgba(15, 23, 42, 0.8)',
+                background: 'var(--bg-input)',
                 color: 'var(--text-main)',
                 outline: 'none',
                 width: '130px',
@@ -93,7 +93,7 @@ export const IncidentPanel: React.FC<IncidentPanelProps> = ({
               fontSize: '0.75rem',
               borderRadius: '6px',
               border: '1px solid var(--border-subtle)',
-              background: 'rgba(15, 23, 42, 0.8)',
+              background: 'var(--bg-input)',
               color: 'var(--text-muted)',
               outline: 'none',
               cursor: 'pointer',
@@ -118,8 +118,8 @@ export const IncidentPanel: React.FC<IncidentPanelProps> = ({
             borderRadius: '4px',
             border: 'none',
             cursor: 'pointer',
-            background: statusFilter === 'all' ? 'var(--cyan-bright)' : 'rgba(30, 41, 59, 0.6)',
-            color: statusFilter === 'all' ? '#000' : 'var(--text-muted)',
+            background: statusFilter === 'all' ? 'var(--cyan-bright)' : 'var(--chip-inactive-bg)',
+            color: statusFilter === 'all' ? '#ffffff' : 'var(--text-muted)',
             fontWeight: 600,
           }}
         >
@@ -133,8 +133,8 @@ export const IncidentPanel: React.FC<IncidentPanelProps> = ({
             borderRadius: '4px',
             border: 'none',
             cursor: 'pointer',
-            background: statusFilter === 'pending' ? 'var(--amber-warn)' : 'rgba(30, 41, 59, 0.6)',
-            color: statusFilter === 'pending' ? '#000' : 'var(--text-muted)',
+            background: statusFilter === 'pending' ? 'var(--amber-warn)' : 'var(--chip-inactive-bg)',
+            color: statusFilter === 'pending' ? '#ffffff' : 'var(--text-muted)',
             fontWeight: 600,
           }}
         >
@@ -148,8 +148,8 @@ export const IncidentPanel: React.FC<IncidentPanelProps> = ({
             borderRadius: '4px',
             border: 'none',
             cursor: 'pointer',
-            background: statusFilter === 'in_progress' ? 'var(--blue-bright)' : 'rgba(30, 41, 59, 0.6)',
-            color: statusFilter === 'in_progress' ? '#000' : 'var(--text-muted)',
+            background: statusFilter === 'in_progress' ? 'var(--blue-bright)' : 'var(--chip-inactive-bg)',
+            color: statusFilter === 'in_progress' ? '#ffffff' : 'var(--text-muted)',
             fontWeight: 600,
           }}
         >
@@ -163,8 +163,8 @@ export const IncidentPanel: React.FC<IncidentPanelProps> = ({
             borderRadius: '4px',
             border: 'none',
             cursor: 'pointer',
-            background: statusFilter === 'bottleneck' ? 'var(--rose-crit)' : 'rgba(30, 41, 59, 0.6)',
-            color: statusFilter === 'bottleneck' ? '#fff' : bottleneckCount > 0 ? '#fda4af' : 'var(--text-muted)',
+            background: statusFilter === 'bottleneck' ? 'var(--rose-crit)' : 'var(--chip-inactive-bg)',
+            color: statusFilter === 'bottleneck' ? '#fff' : bottleneckCount > 0 ? 'var(--rose-crit)' : 'var(--text-muted)',
             fontWeight: 600,
           }}
         >
@@ -178,8 +178,8 @@ export const IncidentPanel: React.FC<IncidentPanelProps> = ({
             borderRadius: '4px',
             border: 'none',
             cursor: 'pointer',
-            background: statusFilter === 'resolved' ? 'var(--emerald-safe)' : 'rgba(30, 41, 59, 0.6)',
-            color: statusFilter === 'resolved' ? '#000' : 'var(--text-muted)',
+            background: statusFilter === 'resolved' ? 'var(--emerald-safe)' : 'var(--chip-inactive-bg)',
+            color: statusFilter === 'resolved' ? '#ffffff' : 'var(--text-muted)',
             fontWeight: 600,
           }}
         >

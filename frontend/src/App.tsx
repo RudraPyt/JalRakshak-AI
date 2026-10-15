@@ -33,6 +33,22 @@ export const App: React.FC = () => {
   const [isConnected, setIsConnected] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Theme state: 'dark' (default) or 'light'
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    const saved = localStorage.getItem('jalrakshak_theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('jalrakshak_theme', theme);
+  }, [theme]);
+
+  const handleToggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   // Inspector Drawer Selection
   const [selectedEntity, setSelectedEntity] = useState<{
     type: 'boat' | 'incident' | 'shelter' | 'edge' | 'zone';
@@ -190,6 +206,8 @@ export const App: React.FC = () => {
         activeTab={activeTab}
         isConnected={isConnected}
         autoPlaySpeed={autoPlaySpeed}
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
         onTabChange={handleTabChange}
         onStrategyChange={handleStrategyChange}
         onStep={handleStep}

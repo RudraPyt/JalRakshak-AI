@@ -125,7 +125,7 @@ export const DecisionInspector: React.FC<DecisionInspectorProps> = ({ currentMin
               fontSize: '0.775rem',
               borderRadius: '6px',
               border: '1px solid var(--border-subtle)',
-              background: 'rgba(15, 23, 42, 0.8)',
+              background: 'var(--bg-input)',
               color: 'var(--text-main)',
               outline: 'none',
             }}
@@ -141,7 +141,7 @@ export const DecisionInspector: React.FC<DecisionInspectorProps> = ({ currentMin
             fontSize: '0.75rem',
             borderRadius: '6px',
             border: '1px solid var(--border-subtle)',
-            background: 'rgba(15, 23, 42, 0.9)',
+            background: 'var(--bg-input)',
             color: 'var(--text-muted)',
             outline: 'none',
             cursor: 'pointer',
@@ -168,7 +168,7 @@ export const DecisionInspector: React.FC<DecisionInspectorProps> = ({ currentMin
             fontSize: '0.75rem',
             borderRadius: '6px',
             border: '1px solid var(--border-subtle)',
-            background: 'rgba(15, 23, 42, 0.8)',
+            background: 'var(--bg-input)',
             color: 'var(--text-main)',
             outline: 'none',
             width: '150px',
@@ -177,7 +177,7 @@ export const DecisionInspector: React.FC<DecisionInspectorProps> = ({ currentMin
       </div>
 
       {/* Decision Log Timeline */}
-      <div style={{ flex: 1, overflowY: 'auto', border: '1px solid var(--border-subtle)', borderRadius: '8px', padding: '0.5rem', background: 'rgba(7, 11, 20, 0.4)' }}>
+      <div style={{ flex: 1, overflowY: 'auto', border: '1px solid var(--border-subtle)', borderRadius: '8px', padding: '0.5rem', background: 'var(--bg-secondary)' }}>
         {displayedLogs.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '2.5rem', color: 'var(--text-dim)', fontSize: '0.85rem' }}>
             {loading ? 'Fetching live decision audit logs...' : 'No decision logs recorded yet for current filter.'}

@@ -120,7 +120,7 @@ export const SimulationMap: React.FC<SimulationMapProps> = ({
         width: '100%',
         height: '620px',
         overflow: 'hidden',
-        background: 'radial-gradient(ellipse at 50% 50%, #0c1527 0%, #070b14 100%)',
+        background: 'var(--map-bg)',
         border: '1px solid var(--border-strong)',
         cursor: isDragging ? 'grabbing' : 'grab',
       }}
@@ -185,7 +185,7 @@ export const SimulationMap: React.FC<SimulationMapProps> = ({
           display: 'flex',
           alignItems: 'center',
           gap: '0.35rem',
-          background: 'rgba(15, 23, 42, 0.85)',
+          background: 'var(--map-overlay-bg)',
           padding: '0.25rem 0.5rem',
           borderRadius: '8px',
           border: '1px solid var(--border-subtle)',
@@ -209,7 +209,7 @@ export const SimulationMap: React.FC<SimulationMapProps> = ({
               border: 'none',
               cursor: 'pointer',
               background: filterLayer === layer ? 'var(--cyan-bright)' : 'transparent',
-              color: filterLayer === layer ? '#000' : 'var(--text-muted)',
+              color: filterLayer === layer ? '#ffffff' : 'var(--text-muted)',
             }}
           >
             {layer}
@@ -224,7 +224,7 @@ export const SimulationMap: React.FC<SimulationMapProps> = ({
           bottom: '12px',
           left: '12px',
           zIndex: 10,
-          background: 'rgba(15, 23, 42, 0.9)',
+          background: 'var(--map-overlay-bg)',
           padding: '0.4rem 0.75rem',
           borderRadius: '8px',
           border: '1px solid var(--border-subtle)',
@@ -360,8 +360,8 @@ export const SimulationMap: React.FC<SimulationMapProps> = ({
                       width="36"
                       height="16"
                       rx="4"
-                      fill="rgba(15, 23, 42, 0.85)"
-                      stroke={isSelected ? 'var(--cyan-bright)' : 'rgba(255, 255, 255, 0.1)'}
+                      fill="var(--map-badge-bg)"
+                      stroke={isSelected ? 'var(--cyan-bright)' : 'var(--border-subtle)'}
                       strokeWidth="1"
                     />
                     <text
@@ -403,7 +403,7 @@ export const SimulationMap: React.FC<SimulationMapProps> = ({
                 {/* Zone Halo */}
                 <circle
                   r={isSelected ? 26 : 22}
-                  fill="rgba(15, 23, 42, 0.85)"
+                  fill="var(--map-node-bg)"
                   stroke={isSelected ? 'var(--cyan-bright)' : 'rgba(6, 182, 212, 0.3)'}
                   strokeWidth={isSelected ? 2.5 : 1.5}
                 />
@@ -411,8 +411,8 @@ export const SimulationMap: React.FC<SimulationMapProps> = ({
                 {/* Inner Ring */}
                 <circle
                   r="14"
-                  fill="rgba(30, 41, 59, 0.9)"
-                  stroke="rgba(255, 255, 255, 0.1)"
+                  fill="var(--map-node-inner)"
+                  stroke="var(--border-subtle)"
                   strokeWidth="1"
                 />
 
@@ -566,7 +566,7 @@ export const SimulationMap: React.FC<SimulationMapProps> = ({
                   {/* Pin Circle */}
                   <circle
                     r="10"
-                    fill={isBottleneck ? 'rgba(244, 63, 94, 0.4)' : 'rgba(15, 23, 42, 0.9)'}
+                    fill={isBottleneck ? 'rgba(244, 63, 94, 0.4)' : 'var(--map-node-bg)'}
                     stroke={isSelected ? 'var(--cyan-bright)' : pinColor}
                     strokeWidth={isSelected ? 2.5 : 1.5}
                   />
@@ -577,7 +577,7 @@ export const SimulationMap: React.FC<SimulationMapProps> = ({
                     dy="3"
                     fontSize="8.5"
                     fontWeight="800"
-                    fill="#ffffff"
+                    fill="var(--text-main)"
                     fontFamily="var(--font-mono)"
                   >
                     {inc.people_awaiting_pickup !== undefined
@@ -642,8 +642,8 @@ export const SimulationMap: React.FC<SimulationMapProps> = ({
                     width="48"
                     height="28"
                     rx="6"
-                    fill="rgba(15, 23, 42, 0.95)"
-                    stroke={isSelected ? '#ffffff' : boatColor}
+                    fill="var(--map-node-bg)"
+                    stroke={isSelected ? 'var(--cyan-bright)' : boatColor}
                     strokeWidth={isSelected ? 2 : 1.2}
                     filter={isFailed ? 'url(#glow-red)' : isSelected ? 'url(#glow-cyan)' : undefined}
                   />

@@ -117,7 +117,7 @@ export const StrategyComparison: React.FC = () => {
                   padding: '0.35rem 0.65rem',
                   fontSize: '0.75rem',
                   borderRadius: '6px',
-                  background: 'rgba(15, 23, 42, 0.9)',
+                  background: 'var(--bg-input)',
                   border: '1px solid var(--border-subtle)',
                   color: 'var(--text-main)',
                   outline: 'none',
@@ -188,15 +188,16 @@ export const StrategyComparison: React.FC = () => {
               <div style={{ width: '100%', height: 260 }}>
                 <ResponsiveContainer>
                   <BarChart data={peopleComparisonData} margin={{ top: 10, right: 20, left: -10, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
                     <XAxis dataKey="metric" stroke="var(--text-muted)" fontSize={11} />
                     <YAxis stroke="var(--text-muted)" fontSize={11} />
                     <Tooltip
                       contentStyle={{
-                        background: 'rgba(15, 23, 42, 0.95)',
+                        background: 'var(--bg-elevated)',
                         border: '1px solid var(--border-strong)',
                         borderRadius: '8px',
                         fontSize: '0.75rem',
+                        color: 'var(--text-main)',
                       }}
                     />
                     <Legend wrapperStyle={{ fontSize: '0.75rem', paddingTop: '8px' }} />
@@ -215,15 +216,16 @@ export const StrategyComparison: React.FC = () => {
               <div style={{ width: '100%', height: 260 }}>
                 <ResponsiveContainer>
                   <BarChart data={efficiencyData} margin={{ top: 10, right: 20, left: -10, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
                     <XAxis dataKey="metric" stroke="var(--text-muted)" fontSize={11} />
                     <YAxis stroke="var(--text-muted)" fontSize={11} />
                     <Tooltip
                       contentStyle={{
-                        background: 'rgba(15, 23, 42, 0.95)',
+                        background: 'var(--bg-elevated)',
                         border: '1px solid var(--border-strong)',
                         borderRadius: '8px',
                         fontSize: '0.75rem',
+                        color: 'var(--text-main)',
                       }}
                     />
                     <Legend wrapperStyle={{ fontSize: '0.75rem', paddingTop: '8px' }} />
@@ -317,7 +319,7 @@ export const StrategyComparison: React.FC = () => {
 
             {/* Observations List */}
             {report.summary_observations && report.summary_observations.length > 0 && (
-              <div style={{ marginTop: '1rem', background: 'rgba(15, 23, 42, 0.6)', padding: '0.85rem', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
+              <div style={{ marginTop: '1rem', background: 'var(--bg-card)', padding: '0.85rem', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
                 <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
                   System Observations & Findings:
                 </div>

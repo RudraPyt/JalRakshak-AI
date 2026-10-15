@@ -30,7 +30,7 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({ selection, onC
       style={{
         padding: '1.25rem',
         borderLeft: '2px solid var(--cyan-bright)',
-        background: 'rgba(15, 23, 42, 0.95)',
+        background: 'var(--bg-elevated)',
         boxShadow: 'var(--shadow-lg)',
         position: 'relative',
       }}
@@ -108,7 +108,7 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({ selection, onC
           </div>
 
           {data.planned_route_zones && data.planned_route_zones.length > 0 && (
-            <div style={{ background: 'rgba(15, 23, 42, 0.6)', padding: '0.65rem', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
+            <div style={{ background: 'var(--bg-card)', padding: '0.65rem', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '0.25rem' }}>
                 Planned Route Waypoints:
               </span>
@@ -195,7 +195,7 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({ selection, onC
           </div>
 
           {data.status_explanation && (
-            <div style={{ background: 'rgba(15, 23, 42, 0.7)', padding: '0.65rem', borderRadius: '8px', border: '1px solid var(--border-subtle)', color: 'var(--text-muted)', fontSize: '0.775rem' }}>
+            <div style={{ background: 'var(--bg-card)', padding: '0.65rem', borderRadius: '8px', border: '1px solid var(--border-subtle)', color: 'var(--text-muted)', fontSize: '0.775rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--cyan-bright)', marginBottom: '0.2rem' }}>
                 <Info size={13} /> Status Explanation
               </div>

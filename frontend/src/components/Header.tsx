@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Activity,
   Play,
@@ -12,6 +11,8 @@ import {
   BarChart3,
   AlertTriangle,
   Radio,
+  Sun,
+  Moon,
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -21,6 +22,8 @@ interface HeaderProps {
   activeTab: 'dashboard' | 'replay' | 'comparison' | 'events' | 'logs';
   isConnected: boolean;
   autoPlaySpeed: number;
+  theme: 'dark' | 'light';
+  onToggleTheme: () => void;
   onTabChange: (tab: 'dashboard' | 'replay' | 'comparison' | 'events' | 'logs') => void;
   onStrategyChange: (strategy: 'centralized' | 'multi_agent') => void;
   onStep: () => void;
@@ -39,6 +42,8 @@ export const Header: React.FC<HeaderProps> = ({
   activeTab,
   isConnected,
   autoPlaySpeed,
+  theme,
+  onToggleTheme,
   onTabChange,
   onStrategyChange,
   onStep,
@@ -85,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <h1 style={{ fontSize: '1.05rem', fontWeight: 800, letterSpacing: '-0.02em', color: '#f8fafc' }}>
+              <h1 style={{ fontSize: '1.05rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-main)' }}>
                 JalRakshak AI
               </h1>
               <span style={{ fontSize: '0.7rem', color: 'var(--cyan-bright)', background: 'rgba(6, 182, 212, 0.12)', padding: '0.1rem 0.4rem', borderRadius: '4px', border: '1px solid var(--border-cyan)', fontWeight: 600 }}>
@@ -129,13 +134,13 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="glass-card" style={{ padding: '0.35rem 0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', borderColor: 'var(--border-cyan)' }}>
             <Activity size={16} color="var(--cyan-bright)" className={isRunning ? 'pulsing-ring' : ''} />
             <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>SIM TIME</span>
-            <span className="mono" style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8' }}>
+            <span className="mono" style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--blue-bright)' }}>
               T + {minute} <span style={{ fontSize: '0.75rem', fontWeight: 400, color: 'var(--text-muted)' }}>min</span>
             </span>
           </div>
 
           {/* Strategy Selector */}
-          <div style={{ display: 'flex', background: 'rgba(15, 23, 42, 0.9)', padding: '0.2rem', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
+          <div style={{ display: 'flex', background: 'var(--bg-elevated)', padding: '0.2rem', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
             <button
               onClick={() => onStrategyChange('centralized')}
               disabled={isProcessing}
@@ -222,12 +227,40 @@ export const Header: React.FC<HeaderProps> = ({
               <option value={1000}>1.0s / min</option>
               <option value={500}>0.5s / min (Fast)</option>
             </select>
+
+            {/* Dark / Light Mode Switch Button */}
+            <button
+              className="btn btn-secondary theme-toggle-btn"
+              onClick={onToggleTheme}
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              aria-label={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              style={{
+                padding: '0.35rem 0.65rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                borderRadius: '6px',
+                cursor: 'pointer',
+              }}
+            >
+              {theme === 'dark' ? (
+                <>
+                  <Sun size={14} color="#f59e0b" />
+                  <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>Light</span>
+                </>
+              ) : (
+                <>
+                  <Moon size={14} color="#6366f1" />
+                  <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>Dark</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
       </div>
 
       {/* Navigation Tabs */}
-      <nav style={{ display: 'flex', borderTop: '1px solid var(--border-subtle)', background: 'rgba(10, 15, 29, 0.6)', padding: '0 1.25rem', gap: '0.5rem' }}>
+      <nav style={{ display: 'flex', borderTop: '1px solid var(--border-subtle)', background: 'var(--bg-secondary)', padding: '0 1.25rem', gap: '0.5rem' }}>
         {[
           { id: 'dashboard', label: 'Command Dashboard', icon: Activity },
           { id: 'events', label: 'Scenario Events & Stress', icon: Sliders },
