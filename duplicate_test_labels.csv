@@ -1,0 +1,5 @@
+incident_a,incident_b,is_duplicate,label_reason
+INC001,INC010,1,"same incident, nearby coordinates and overlapping description"
+INC001,INC003,0,different zone and distinct report
+INC002,INC008,0,different incident locations
+INC005,INC009,0,different zones; similar medium urgency is not enough

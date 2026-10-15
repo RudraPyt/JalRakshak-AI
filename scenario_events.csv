@@ -1,0 +1,6 @@
+event_id,simulation_minute,event_type,target_id,description,source_confidence
+EV001,5,road_closure,N2,Bridge route closed after new inspection,high
+EV002,8,boat_failure,BOAT03,Boat temporarily unavailable for 10 simulated minutes,high
+EV003,10,shelter_overflow,SH02,Shelter reaches capacity; stop new assignments,high
+EV004,12,conflicting_report,INC009,Second report suggests WestHamlet access may be blocked,low
+EV005,15,road_reopen,N2,Route reopened after verification,medium

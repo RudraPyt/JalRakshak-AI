@@ -1,0 +1,5 @@
+shelter_id,name,x,y,capacity_people,current_occupancy,remaining_capacity,status
+SH01,CentralSchool,0.5,0.5,40,22,18,open
+SH02,CommunityHall,2.0,0.5,25,19,6,open
+SH03,HighGround,3.0,2.5,30,28,2,open
+SH04,RiversideClinic,1.5,2.5,15,15,0,full

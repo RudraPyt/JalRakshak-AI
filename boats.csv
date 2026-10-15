@@ -1,0 +1,5 @@
+boat_id,current_zone,x,y,capacity_people,speed_units_per_min,status,safety_factor
+BOAT01,Northbank-1,0.0,0.0,8,1.0,available,1.0
+BOAT02,DepotLane,1.0,3.2,6,1.2,available,1.1
+BOAT03,EastColony,2.5,1.0,10,0.8,available,0.9
+BOAT04,SouthWard,2.8,2.8,5,1.0,available,1.0

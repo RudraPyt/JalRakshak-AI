@@ -1,0 +1,13 @@
+incident_id,zone,x,y,people_affected,report_age_min,reported_urgency,source_confidence,verification_status,assigned_boat_id
+INC001,Northbank-1,0.2,1.0,14,5,high,0.92,verified,0
+INC002,OldMarket,1.4,0.8,8,18,critical,0.95,verified,0
+INC003,EastColony,2.2,1.5,11,12,high,0.78,reported,0
+INC004,LowBridge,1.0,2.1,5,9,critical,0.88,verified,0
+INC005,HillSide,2.8,0.4,3,35,medium,0.7,reported,0
+INC006,CanalRoad,0.6,2.8,9,7,high,0.91,verified,0
+INC007,SouthWard,2.4,2.6,16,4,critical,0.97,verified,0
+INC008,SchoolBlock,1.8,1.2,20,3,critical,0.93,verified,0
+INC009,WestHamlet,3.2,1.8,6,24,medium,0.62,unverified,0
+INC010,Northbank-1,0.25,1.05,12,2,high,0.86,possible_duplicate,0
+INC011,DepotLane,1.2,3.0,4,15,medium,0.74,reported,0
+INC012,ClinicQuarter,1.7,2.0,7,6,critical,0.9,verified,0

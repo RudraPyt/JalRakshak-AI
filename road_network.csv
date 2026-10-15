@@ -1,0 +1,13 @@
+edge_id,from_zone,to_zone,distance_units,travel_time_min,status,uncertainty
+N1,Northbank-1,OldMarket,1.5,8,open,0.1
+N2,Northbank-1,LowBridge,1.4,7,open,0.2
+N3,OldMarket,EastColony,1.2,6,open,0.1
+N4,OldMarket,SchoolBlock,0.8,5,open,0.0
+N5,LowBridge,CanalRoad,1.1,6,open,0.2
+N6,CanalRoad,SouthWard,1.7,9,open,0.2
+N7,EastColony,ClinicQuarter,1.0,5,open,0.1
+N8,ClinicQuarter,SouthWard,1.2,7,open,0.2
+N9,EastColony,HillSide,1.6,8,open,0.0
+N10,HillSide,WestHamlet,1.1,6,open,0.0
+N11,DepotLane,CanalRoad,1.0,5,open,0.1
+N12,SchoolBlock,ClinicQuarter,1.0,5,open,0.1
