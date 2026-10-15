@@ -1,6 +1,10 @@
 # JalRakshak AI — Adaptive Flood Rescue Coordination System
 **Hackathon Problem Statement 27: Flood Rescue Dispatch — Where Boats, Shelters, and Roads Negotiate in Real Time**
 
+🚀 **Live Frontend (Netlify):** [https://jalrakshak-ai-frontend.netlify.app/](https://jalrakshak-ai-frontend.netlify.app/)  
+⚡ **Live Backend API (Render):** [https://jalrakshak-ai-backend.onrender.com/docs](https://jalrakshak-ai-backend.onrender.com/docs)  
+🩺 **Health Endpoint:** [https://jalrakshak-ai-backend.onrender.com/health](https://jalrakshak-ai-backend.onrender.com/health)
+
 ---
 
 ## 1. System Overview
