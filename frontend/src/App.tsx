@@ -49,14 +49,24 @@ export const App: React.FC = () => {
       setError(null);
     } catch (err: any) {
       setIsConnected(false);
-      setError(err.message || 'Cannot connect to JalRakshak AI backend API.');
+      setError(
+        err.message?.includes('Failed to fetch') || err.message?.includes('NetworkError')
+          ? 'Connecting to backend... If hosted on Render free tier, the instance may be spinning up (cold start ~30s). Retrying automatically...'
+          : err.message || 'Cannot connect to JalRakshak AI backend API.'
+      );
     }
   };
 
-  // Initial load
+  // Initial load & automatic reconnect polling (essential during Render cold starts)
   useEffect(() => {
     fetchState();
-  }, []);
+    const reconnectTimer = setInterval(() => {
+      if (!isConnected && !isRunning) {
+        fetchState();
+      }
+    }, 4000);
+    return () => clearInterval(reconnectTimer);
+  }, [isConnected, isRunning]);
 
   // Step Simulation (+1 min)
   const handleStep = async () => {
