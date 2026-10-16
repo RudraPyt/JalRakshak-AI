@@ -3,6 +3,28 @@ from pathlib import Path
 from pydantic import BaseModel, Field
 
 
+def _load_dotenv_if_present():
+    """Safely populate os.environ from local .env files if not already set."""
+    root = Path(__file__).resolve().parent.parent.parent
+    for env_path in [root / ".env", root / "backend" / ".env"]:
+        if env_path.exists() and env_path.is_file():
+            try:
+                with open(env_path, "r", encoding="utf-8") as f:
+                    for line in f:
+                        line = line.strip()
+                        if line and not line.startswith("#") and "=" in line:
+                            key, val = line.split("=", 1)
+                            key = key.strip()
+                            val = val.strip().strip("'\"")
+                            if key and key not in os.environ:
+                                os.environ[key] = val
+            except Exception:
+                pass
+
+
+_load_dotenv_if_present()
+
+
 class Settings(BaseModel):
     """Application and simulation settings."""
 
@@ -25,14 +47,15 @@ class Settings(BaseModel):
     # Bidirectional routing default
     DEFAULT_BIDIRECTIONAL_EDGES: bool = True
 
-    # Google Gemini AI Emergency Situation Analyst settings
+# Google Gemini AI Emergency Situation Analyst settings
     GEMINI_API_KEY: str = Field(default_factory=lambda: os.getenv("GEMINI_API_KEY", ""))
     GEMINI_MODEL: str = Field(default_factory=lambda: os.getenv("GEMINI_MODEL", "gemini-2.5-flash"))
     GEMINI_TIMEOUT_SECONDS: float = Field(default_factory=lambda: float(os.getenv("GEMINI_TIMEOUT_SECONDS", "30.0")))
 
     @property
     def effective_gemini_api_key(self) -> str:
-        """Dynamically fetch the current GEMINI_API_KEY from environment."""
+        """Dynamically fetch the current GEMINI_API_KEY from environment or loaded .env."""
+        _load_dotenv_if_present()
         return os.getenv("GEMINI_API_KEY", self.GEMINI_API_KEY)
 
     @property

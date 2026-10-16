@@ -56,7 +56,12 @@ pnpm-debug.log*
 # Environment & Secret files
 .env
 .env.*
+*.env
+backend/.env
+frontend/.env
 !.env.example
+!backend/.env.example
+!frontend/.env.example
 
 # IDEs & Editors
 .vscode/
