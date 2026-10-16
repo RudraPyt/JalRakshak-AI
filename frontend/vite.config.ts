@@ -13,5 +13,10 @@ export default defineConfig({
       },
     },
   },
+  // @ts-ignore
+  test: {
+    environment: 'jsdom',
+    globals: true,
+  },
 })
 

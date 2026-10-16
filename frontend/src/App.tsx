@@ -9,6 +9,7 @@ import { DecisionInspector } from './components/DecisionInspector';
 import { EventControls } from './components/EventControls';
 import { ReplayScrubber } from './components/ReplayScrubber';
 import { StrategyComparison } from './components/StrategyComparison';
+import { AIEmergencyAnalyst } from './components/AIEmergencyAnalyst';
 import type {
   SimulationStateResponse,
   ReplaySnapshot,
@@ -25,7 +26,7 @@ export const App: React.FC = () => {
   const [replaySnapshot, setReplaySnapshot] = useState<ReplaySnapshot | null>(null);
   const [isReplayActive, setIsReplayActive] = useState(false);
 
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'replay' | 'comparison' | 'events' | 'logs'>('dashboard');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'ai-analyst' | 'replay' | 'comparison' | 'events' | 'logs'>('dashboard');
   const [strategy, setStrategy] = useState<'centralized' | 'multi_agent'>('centralized');
   const [isRunning, setIsRunning] = useState(false);
   const [autoPlaySpeed, setAutoPlaySpeed] = useState(2000);
@@ -164,7 +165,7 @@ export const App: React.FC = () => {
   }, [isRunning, autoPlaySpeed, isProcessing, isReplayActive]);
 
   // Tab switch
-  const handleTabChange = (tab: 'dashboard' | 'replay' | 'comparison' | 'events' | 'logs') => {
+  const handleTabChange = (tab: 'dashboard' | 'ai-analyst' | 'replay' | 'comparison' | 'events' | 'logs') => {
     setActiveTab(tab);
     if (tab === 'replay') {
       setIsReplayActive(true);
@@ -256,50 +257,72 @@ export const App: React.FC = () => {
 
         {/* TAB 1: COMMAND DASHBOARD */}
         {activeTab === 'dashboard' && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.35fr) minmax(360px, 1fr)', gap: '1.25rem' }}>
-            {/* Left Column: Interactive Simulation Map & Inspector Drawer */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <SimulationMap
-                zones={activeZones}
-                edges={activeEdges}
-                boats={activeBoats as Boat[]}
-                shelters={activeShelters as Shelter[]}
-                incidents={activeIncidents as Incident[]}
-                activeAssignments={activeAssignments}
-                selectedEntity={selectedEntity}
-                onSelectEntity={handleSelectEntity}
-              />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            {/* Embedded AI Situation Analyst Action Deck */}
+            <AIEmergencyAnalyst
+              currentMinute={activeMinute}
+              activeStrategy={strategy}
+              onRefreshSimulationState={fetchState}
+              compact={false}
+            />
 
-              {/* Inspector Drawer under map if an entity is selected */}
-              {selectedEntity && (
-                <InspectorDrawer
-                  selection={selectedEntity}
-                  onClose={() => setSelectedEntity(null)}
-                />
-              )}
-            </div>
-
-            {/* Right Column: Split Panels for Incidents & Resources */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '620px' }}>
-              <div style={{ flex: 1.1, minHeight: '300px' }}>
-                <IncidentPanel
-                  incidents={activeIncidents as Incident[]}
-                  onSelectIncident={(inc) => handleSelectEntity('incident', inc)}
-                  selectedIncidentId={selectedEntity?.type === 'incident' ? selectedEntity.data.incident_id : undefined}
-                />
-              </div>
-
-              <div style={{ flex: 0.9, minHeight: '260px' }}>
-                <ResourcePanel
+            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.35fr) minmax(360px, 1fr)', gap: '1.25rem' }}>
+              {/* Left Column: Interactive Simulation Map & Inspector Drawer */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <SimulationMap
+                  zones={activeZones}
+                  edges={activeEdges}
                   boats={activeBoats as Boat[]}
                   shelters={activeShelters as Shelter[]}
-                  onSelectBoat={(b) => handleSelectEntity('boat', b)}
-                  onSelectShelter={(s) => handleSelectEntity('shelter', s)}
-                  selectedBoatId={selectedEntity?.type === 'boat' ? selectedEntity.data.boat_id : undefined}
-                  selectedShelterId={selectedEntity?.type === 'shelter' ? selectedEntity.data.shelter_id : undefined}
+                  incidents={activeIncidents as Incident[]}
+                  activeAssignments={activeAssignments}
+                  selectedEntity={selectedEntity}
+                  onSelectEntity={handleSelectEntity}
                 />
+
+                {/* Inspector Drawer under map if an entity is selected */}
+                {selectedEntity && (
+                  <InspectorDrawer
+                    selection={selectedEntity}
+                    onClose={() => setSelectedEntity(null)}
+                  />
+                )}
+              </div>
+
+              {/* Right Column: Split Panels for Incidents & Resources */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '620px' }}>
+                <div style={{ flex: 1.1, minHeight: '300px' }}>
+                  <IncidentPanel
+                    incidents={activeIncidents as Incident[]}
+                    onSelectIncident={(inc) => handleSelectEntity('incident', inc)}
+                    selectedIncidentId={selectedEntity?.type === 'incident' ? selectedEntity.data.incident_id : undefined}
+                  />
+                </div>
+
+                <div style={{ flex: 0.9, minHeight: '260px' }}>
+                  <ResourcePanel
+                    boats={activeBoats as Boat[]}
+                    shelters={activeShelters as Shelter[]}
+                    onSelectBoat={(b) => handleSelectEntity('boat', b)}
+                    onSelectShelter={(s) => handleSelectEntity('shelter', s)}
+                    selectedBoatId={selectedEntity?.type === 'boat' ? selectedEntity.data.boat_id : undefined}
+                    selectedShelterId={selectedEntity?.type === 'shelter' ? selectedEntity.data.shelter_id : undefined}
+                  />
+                </div>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* TAB: DEDICATED FULL-VIEW AI EMERGENCY SITUATION ANALYST */}
+        {activeTab === 'ai-analyst' && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <AIEmergencyAnalyst
+              currentMinute={activeMinute}
+              activeStrategy={strategy}
+              onRefreshSimulationState={fetchState}
+              compact={false}
+            />
           </div>
         )}
 

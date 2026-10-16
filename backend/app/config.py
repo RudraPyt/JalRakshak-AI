@@ -1,7 +1,6 @@
-"""Configuration and path settings for JalRakshak AI backend."""
-
+import os
 from pathlib import Path
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Settings(BaseModel):
@@ -25,6 +24,32 @@ class Settings(BaseModel):
 
     # Bidirectional routing default
     DEFAULT_BIDIRECTIONAL_EDGES: bool = True
+
+    # Google Gemini AI Emergency Situation Analyst settings
+    GEMINI_API_KEY: str = Field(default_factory=lambda: os.getenv("GEMINI_API_KEY", ""))
+    GEMINI_MODEL: str = Field(default_factory=lambda: os.getenv("GEMINI_MODEL", "gemini-2.5-flash"))
+    GEMINI_TIMEOUT_SECONDS: float = Field(default_factory=lambda: float(os.getenv("GEMINI_TIMEOUT_SECONDS", "30.0")))
+
+    @property
+    def effective_gemini_api_key(self) -> str:
+        """Dynamically fetch the current GEMINI_API_KEY from environment."""
+        return os.getenv("GEMINI_API_KEY", self.GEMINI_API_KEY)
+
+    @property
+    def effective_gemini_model(self) -> str:
+        """Dynamically fetch the current GEMINI_MODEL from environment."""
+        return os.getenv("GEMINI_MODEL", self.GEMINI_MODEL)
+
+    @property
+    def effective_gemini_timeout(self) -> float:
+        """Dynamically fetch the current GEMINI_TIMEOUT_SECONDS from environment."""
+        val = os.getenv("GEMINI_TIMEOUT_SECONDS")
+        if val:
+            try:
+                return float(val)
+            except ValueError:
+                pass
+        return self.GEMINI_TIMEOUT_SECONDS
 
 
 settings = Settings()

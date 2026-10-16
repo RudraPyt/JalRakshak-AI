@@ -14,6 +14,8 @@ import type {
   LogsResponse,
   ComparisonReport,
   StrategyMetrics,
+  SituationReportResponse,
+  SituationReportRequest,
 } from '../types';
 
 
@@ -146,5 +148,15 @@ export const api = {
       method: 'POST',
     });
     return handleResponse<ComparisonReport>(res);
+  },
+
+  // Gemini AI Emergency Situation Analyst
+  async getSituationReport(req?: SituationReportRequest): Promise<SituationReportResponse> {
+    const res = await fetch(`${BASE_URL}/api/ai/situation-report`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(req || {}),
+    });
+    return handleResponse<SituationReportResponse>(res);
   },
 };

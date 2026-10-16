@@ -284,3 +284,73 @@ export interface LogsResponse {
   returned_count: number;
   logs: DecisionLogEntry[];
 }
+
+// ---------------------------------------------------------------------------
+// Google Gemini AI Emergency Situation Analyst Types
+// ---------------------------------------------------------------------------
+
+export interface CriticalIncidentAnalysis {
+  incident_id: string;
+  location: string;
+  urgency: string;
+  affected_population: number;
+  waiting_population: number;
+  reason: string;
+}
+
+export interface ResourceStatusAnalysis {
+  total_boats: number;
+  available_boats: number;
+  dispatched_boats: number;
+  failed_boats: number;
+  total_shelter_capacity: number;
+  shelter_current_occupancy: number;
+  shelter_remaining_capacity: number;
+  shortages_and_notes: string;
+}
+
+export interface BottleneckOrRisk {
+  category: string;
+  description: string;
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  evidence: string;
+}
+
+export interface RecommendedAction {
+  action_id: string;
+  title: string;
+  rationale: string;
+  priority: 'low' | 'medium' | 'high' | 'critical';
+  target_entity?: string;
+  advisory_note: string;
+}
+
+export interface StrategyPerformanceAnalysis {
+  current_strategy: string;
+  measurements_available: boolean;
+  summary: string;
+  comparison_details?: Record<string, any>;
+}
+
+export interface DataLimitationsAnalysis {
+  has_limitations: boolean;
+  limitations: string[];
+}
+
+export interface SituationReportResponse {
+  simulation_minute: number;
+  generated_at_utc: string;
+  model_used: string;
+  advisory_disclaimer: string;
+  situation_overview: string;
+  critical_incidents: CriticalIncidentAnalysis[];
+  resource_status: ResourceStatusAnalysis;
+  bottlenecks_and_risks: BottleneckOrRisk[];
+  recommended_actions: RecommendedAction[];
+  strategy_performance: StrategyPerformanceAnalysis;
+  data_limitations: DataLimitationsAnalysis;
+}
+
+export interface SituationReportRequest {
+  focus_area?: string;
+}

@@ -13,18 +13,19 @@ import {
   Radio,
   Sun,
   Moon,
+  Sparkles,
 } from 'lucide-react';
 
 interface HeaderProps {
   minute: number;
   isRunning: boolean;
   strategy: 'centralized' | 'multi_agent';
-  activeTab: 'dashboard' | 'replay' | 'comparison' | 'events' | 'logs';
+  activeTab: 'dashboard' | 'ai-analyst' | 'replay' | 'comparison' | 'events' | 'logs';
   isConnected: boolean;
   autoPlaySpeed: number;
   theme: 'dark' | 'light';
   onToggleTheme: () => void;
-  onTabChange: (tab: 'dashboard' | 'replay' | 'comparison' | 'events' | 'logs') => void;
+  onTabChange: (tab: 'dashboard' | 'ai-analyst' | 'replay' | 'comparison' | 'events' | 'logs') => void;
   onStrategyChange: (strategy: 'centralized' | 'multi_agent') => void;
   onStep: () => void;
   onTogglePlay: () => void;
@@ -260,9 +261,10 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Navigation Tabs */}
-      <nav style={{ display: 'flex', borderTop: '1px solid var(--border-subtle)', background: 'var(--bg-secondary)', padding: '0 1.25rem', gap: '0.5rem' }}>
+      <nav style={{ display: 'flex', borderTop: '1px solid var(--border-subtle)', background: 'var(--bg-secondary)', padding: '0 1.25rem', gap: '0.5rem', overflowX: 'auto' }}>
         {[
           { id: 'dashboard', label: 'Command Dashboard', icon: Activity },
+          { id: 'ai-analyst', label: 'AI Emergency Situation Analyst', icon: Sparkles },
           { id: 'events', label: 'Scenario Events & Stress', icon: Sliders },
           { id: 'logs', label: 'Decision Inspector (CNP)', icon: Radio },
           { id: 'replay', label: 'After-Action Replay', icon: History },

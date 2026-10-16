@@ -8,12 +8,14 @@
 
 [![Live Demo](https://img.shields.io/badge/Netlify-Live_Frontend-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://jalrakshak-ai-frontend.netlify.app/)
 [![API Backend](https://img.shields.io/badge/Render-FastAPI_Backend-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://jalrakshak-ai-backend.onrender.com/docs)
-[![Test Suite](https://img.shields.io/badge/Pytest-60%2F60_Passing-brightgreen?style=for-the-badge&logo=pytest&logoColor=white)](https://github.com/RudraPyt/JalRakshak-AI/tree/main/backend/tests)
+[![Test Suite](https://img.shields.io/badge/Pytest-68%2F68_Passing-brightgreen?style=for-the-badge&logo=pytest&logoColor=white)](https://github.com/RudraPyt/JalRakshak-AI/tree/main/backend/tests)
+[![Gemini AI](https://img.shields.io/badge/Google_Gemini-2.5_Flash_Analyst-8E75C2?style=for-the-badge&logo=google&logoColor=white)](https://aistudio.google.com/)
 [![Safety Invariants](https://img.shields.io/badge/Safety_Invariants-10%2F10_Enforced-blueviolet?style=for-the-badge)](https://github.com/RudraPyt/JalRakshak-AI/blob/main/backend/app/core/invariants.py)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 <p align="center">
   <a href="#-quick-links--live-deployments"><strong>Live Deployments</strong></a> •
+  <a href="#-gemini-ai-emergency-situation-analyst"><strong>Gemini AI Analyst</strong></a> •
   <a href="#-system-architecture"><strong>Architecture</strong></a> •
   <a href="#-dual-dispatch-strategies"><strong>Dispatch Strategies</strong></a> •
   <a href="#-the-contract-net-protocol-cnp"><strong>Contract Net Protocol</strong></a> •
@@ -106,7 +108,35 @@ flowchart TB
 
 ---
 
-## 🔄 3. Deterministic 7-Step Simulation Event Loop
+## 🤖 3. Gemini-Powered AI Emergency Situation Analyst
+
+Integrated directly into the command dashboard, the **AI Emergency Situation Analyst** provides high-level automated decision support using Google's **Gemini 2.5 Flash** model via the official `google-genai` Python SDK.
+
+### Key Architectural Safeguards:
+- **Consistent Snapshot Ingestion:** Safely captures a thread-safe snapshot of active incidents, stranded populations, boat operational statuses, shelter capacities, and NetworkX road closures.
+- **7-Part Structured Advisory Report:**
+  1. **Situation Overview:** Concise, high-level summary of the simulated emergency at time $T$.
+  2. **Critical Incidents:** Data-supported triage flagging high-casualty sectors and urgent care clusters.
+  3. **Resource Status:** Precise accounting of available vs. committed boats and shelter capacity margins.
+  4. **Bottlenecks and Risks:** Evidence-based identification of bridge washouts, high uncertainty corridors, and vessel outages.
+  5. **Recommended Actions:** Prioritized, practical suggestions formulated strictly for human coordinator review.
+  6. **Strategy Performance:** Objective assessment of whether comparative benchmark measurements exist.
+  7. **Data Limitations:** Transparent identification of simulation scope, unverified civilian reports, and data boundaries.
+- **Strictly Advisory & Read-Only:** Gemini acts exclusively as a decision-support analyst. It **never** mutates the simulation clock, dispatches boats, alters routes, or overrides safety invariants.
+- **State Immutability Guarantee:** Verified by automated pytest test `test_simulation_state_immutability` where pre- and post-analysis simulation states remain identical.
+- **Untrusted Input Boundary:** All simulation telemetry is enclosed within explicit `<SIMULATION_DATA>` boundaries with strict system instructions preventing prompt injection.
+- **Credential Protection:** `GEMINI_API_KEY` remains strictly backend-side and is sanitized from all error payloads and server logs.
+
+```bash
+# Configure in backend/.env or Cloud Environment Variables:
+GEMINI_API_KEY="your-google-ai-studio-api-key"
+GEMINI_MODEL="gemini-2.5-flash"      # Configurable (default: gemini-2.5-flash)
+GEMINI_TIMEOUT_SECONDS="30.0"       # Configurable timeout
+```
+
+---
+
+## 🔄 4. Deterministic 7-Step Simulation Event Loop
 
 Every simulation minute advances according to a deterministic 7-step sequence ensuring repeatable state transitions and auditable decision trails:
 
@@ -355,6 +385,7 @@ All backend endpoints are documented interactively in OpenAPI / Swagger UI at [`
 | `/api/evaluation/current` | `GET` | *None* | `StrategyMetrics` | Real-time performance metrics & Jain's index |
 | `/api/evaluation/compare` | `POST` | `{"simulation_minutes": 15}` | `ComparisonReport` | Side-by-side benchmark (Greedy vs. MAS) |
 | `/api/evaluation/stretch-challenge`| `POST` | *None* | `ComparisonReport` | Executes simultaneous 3-point failure benchmark |
+| `/api/ai/situation-report` | `POST` | `SituationReportRequest` (optional) | `SituationReportResponse` | **Gemini AI Situation Analyst:** Evaluates snapshot, bottlenecks, & advisory actions |
 
 ---
 
