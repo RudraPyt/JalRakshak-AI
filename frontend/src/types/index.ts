@@ -329,7 +329,7 @@ export interface StrategyPerformanceAnalysis {
   current_strategy: string;
   measurements_available: boolean;
   summary: string;
-  comparison_details?: Record<string, any>;
+  comparison_details?: string;
 }
 
 export interface DataLimitationsAnalysis {

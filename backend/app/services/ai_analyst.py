@@ -254,12 +254,39 @@ class EmergencySituationAnalyst:
                 response_schema=SituationReportResponse,
                 temperature=0.2,
             )
-            response = client.models.generate_content(
-                model=model_name,
-                contents=prompt,
-                config=config,
-            )
-            return response.text
+            # Candidate models in order of priority (handles retired models & temporary demand spikes)
+            candidates = [model_name]
+            for fallback in ["gemini-3.5-flash", "gemini-3.7-flash", "gemini-3.8-flash"]:
+                if fallback not in candidates:
+                    candidates.append(fallback)
+
+            last_err = None
+            for m in candidates:
+                try:
+                    response = client.models.generate_content(
+                        model=m,
+                        contents=prompt,
+                        config=config,
+                    )
+                    if response.text and response.text.strip():
+                        return response.text
+                except Exception as call_err:
+                    last_err = call_err
+                    err_str = str(call_err).lower()
+                    # If model is retired, not found, or temporary 503 spike, try next candidate
+                    if (
+                        "404" in err_str
+                        or "not found" in err_str
+                        or "503" in err_str
+                        or "unavailable" in err_str
+                        or "high demand" in err_str
+                    ):
+                        logger.warning(f"Gemini model '{m}' returned {err_str[:80]}, trying next candidate...")
+                        continue
+                    raise call_err
+            if last_err:
+                raise last_err
+            raise RuntimeError("Failed to generate response from all candidate Gemini models.")
 
         # Execute call with timeout enforcement
         try:

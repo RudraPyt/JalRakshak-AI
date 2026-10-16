@@ -146,7 +146,7 @@ class StrategyPerformanceAnalysis(BaseModel):
     current_strategy: str = Field(description="Currently active strategy (centralized or multi_agent)")
     measurements_available: bool = Field(description="True if comparative evaluation measurements exist, false otherwise")
     summary: str = Field(description="Factual summary of strategy performance or statement that comparative benchmark is not yet run")
-    comparison_details: Optional[Dict[str, Any]] = Field(default=None, description="Actual metrics if available")
+    comparison_details: Optional[str] = Field(default=None, description="Actual metrics or comparative notes if available")
 
 
 class DataLimitationsAnalysis(BaseModel):

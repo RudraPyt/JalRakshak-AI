@@ -106,7 +106,7 @@ def test_missing_api_key_returns_503(monkeypatch):
 def test_successful_situation_report_generation(mock_genai_client, monkeypatch):
     """Successful call returns validated SituationReportResponse matching current state."""
     monkeypatch.setenv("GEMINI_API_KEY", "test-mock-api-key")
-    monkeypatch.setenv("GEMINI_MODEL", "gemini-2.5-flash")
+    monkeypatch.setenv("GEMINI_MODEL", "gemini-3.5-flash")
     session_manager.reset(strategy="centralized")
 
     mock_instance = MagicMock()
@@ -120,7 +120,7 @@ def test_successful_situation_report_generation(mock_genai_client, monkeypatch):
     report = response.json()
 
     assert report["simulation_minute"] == 0
-    assert report["model_used"] == "gemini-2.5-flash"
+    assert report["model_used"] == "gemini-3.5-flash"
     assert "ADVISORY DISCLAIMER" in report["advisory_disclaimer"]
     assert report["situation_overview"] != ""
     assert len(report["critical_incidents"]) == 1
